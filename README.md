@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+# Video Caption Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React app that allows users to manage video captions with time synchronization. The app uses `react-player` for video playback and provides a straightforward interface for adding and editing captions.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React.js**: For building the user interface.
+- **Vite**: A fast and optimized build tool for React projects.
+- **TypeScript**: To add static typing for better developer experience and error reduction.
+- **react-toastify**: For real-time notifications and feedback.
+- **react-player**: A React component for handling video playback.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Video Playback**: Users can play videos using `react-player`.
+- **Caption Management**: Add, edit, and synchronize captions with video time.
+- **Form Validation**: Ensures correct time synchronization for captions.
+- **Real-time Feedback**: Displays toast notifications using `react-toastify` for key actions like adding and editing captions.
 
-- Configure the top-level `parserOptions` property like this:
+## Technical Decisions & Trade-offs
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Video Playback
+- **Decision**: Used `react-player` to handle video playback. This saved development time and avoided the complexity of building a custom player from scratch.
+- **Trade-off**: Introduced an external dependency to the project.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Caption State Management
+- **Decision**: Managed captions using React state, which is simple and works for the current implementation.
+- **Trade-off**: As the dataset grows, managing captions using React state may face performance issues. A future optimization might require using Redux or Context API for better scalability.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### User Interaction
+- **Decision**: Created a basic form to add and edit captions, with validation for ensuring correct time synchronization.
+- **Trade-off**: A more advanced interface (like a timeline-based editor) could provide better usability but would add complexity to the application.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Notifications
+- **Decision**: Integrated `react-toastify` for providing feedback to users.
+- **Trade-off**: Overusing notifications could be annoying to users, so the notifications are kept minimal and only appear for key actions.
+
+## User Experience Considerations
+
+- **Minimal and Intuitive Interface**: Focus on making the interface simple and easy to use with key actions visible.
+- **Real-time Feedback**: Notifications provide immediate feedback to the user during video playback or when captions are added/edited.
+- **Error Handling**: Basic validation ensures captions are synchronized properly to avoid mistakes.
+
+## Future Improvements
+
+- **Enhanced Caption Editing**: Adding a timeline-based editor for easier syncing of captions with the video.
+- **Multiple Video Format Support**: Allow users to upload videos in different formats or subtitle files.
+- **State Management**: Transition from React state to Redux or Context API for better performance and scalability.
+- **Authentication**: Add user profiles and a system to save captions for future use.
+- **Mobile Optimization**: Ensure the app is fully responsive and works smoothly on mobile devices.
+
+## Installation
+
+To run this project locally, clone the repository and follow the steps below:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/video-caption-app.git
+2. Install dependencies:
+   ```bash
+   npm install
+3. Run the development server:   
+   ```bash
+   npm run dev
+
